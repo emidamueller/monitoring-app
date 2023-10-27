@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+    <meta http-equiv="refresh" th:content="${rangeTime}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<tbody>
+<tr th:if="${serverlist.empty}">
+    <td colspan="2"> No Server-List Available</td>
+</tr>
+</tbody>
+
+<span th:text="${config}"/>
+<table style="width: 56%;" border="2">
+    <tbody>
+    <tr>
+        <th>ServerName</th>
+        <th>Status</th>
+        <th>Time Stamp</th>
+    </tr>
+    <tr th:each="server: ${serverlist}">
+        <td th:text="${server.serverName}"/>
+        <td th:text="${server.status}"/>
+        <td th:text="${#dates.format(server.timeStamp, 'dd-MM-yyyy HH:mm:ss')}"/>
+    </tr>
+    </tbody>
+</table>
+
+</body>
